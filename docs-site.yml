@@ -1,0 +1,3 @@
+title: prusa-mk3-frame-support
+description: A printable replacement for the Prusa MK3(S+) frame support bracket, in OpenSCAD
+models: frame_support.scad
