@@ -12,9 +12,8 @@ Photos of a printed one, on its own and installed, are to come (#2).
 ## Files
 
 - `frame_support.scad` — parametric source; every dimension is a named variable at the top.
-- `frame_support.stl` — ready to print.
 
-To re-export after changing a parameter:
+To get an STL to print, after changing any parameter you want:
 
 ```sh
 openscad -o frame_support.stl frame_support.scad
@@ -42,9 +41,7 @@ Print flat-face down, as modelled; no supports are needed.
 
 `just test` takes under a second on OpenSCAD 2026.10.15. It renders the part with warnings treated
 as errors and checks that it's one solid of the size above; that each slot and side hole is open,
-with a probe a little narrower than it passed through where it should be; and that
-`frame_support.stl` is still the same part as the source renders, by size and volume. Different
-OpenSCAD versions mesh it differently, so it doesn't compare triangles.
+with a probe a little narrower than it passed through where it should be.
 
 `just images` renders the picture above.
 

@@ -1,4 +1,4 @@
-"""Render the frame support and check its size, its mounting points, and the committed STL.
+"""Render the frame support and check its size and its mounting points.
 
 usage: python3 tests/test_frame_support.py [OPENSCAD]
 
@@ -6,9 +6,6 @@ usage: python3 tests/test_frame_support.py [OPENSCAD]
   warnings treated as errors.
 - Each mounting point the README lists is open: a probe a little narrower than
   the slot or hole, through where it should be, doesn't touch the part.
-- frame_support.stl is the same part as the source renders: the same size and
-  the same volume, to within 0.01 %. OpenSCAD versions mesh it differently, so
-  the triangles aren't compared.
 """
 
 import os
@@ -20,7 +17,6 @@ import tempfile
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SCAD = os.path.join(ROOT, "frame_support.scad")
-STL = os.path.join(ROOT, "frame_support.stl")
 
 
 def triangles(path):
@@ -108,12 +104,6 @@ def main():
                                capture_output=True, text=True)
             empty = r.returncode != 0 and "top level object is empty" in r.stderr
             check(f"{label} is open", empty, "clear" if empty else "the probe hits the part")
-
-        c_solids, c_lo, c_size, c_volume = measure(STL)
-        same = c_solids == 1 and all(abs(a - b) < 0.01 for a, b in zip(c_size, size)) \
-            and abs(c_volume - volume) <= 1e-4 * volume
-        check("frame_support.stl matches the source", same,
-              f"{' x '.join(f'{s:.2f}' for s in c_size)} mm, {c_volume:.1f} mm3 against {volume:.1f} mm3")
 
     print(f"{sum(results)} of {len(results)} checks passed")
     sys.exit(0 if all(results) else 1)
