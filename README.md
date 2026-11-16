@@ -2,9 +2,12 @@
 
 A printable version of the Prusa MK3(S+) frame support...in case you lose yours like I did.
 
-This is a scad implementation of the bracket for the Prusa MK3(S+) frame support if you're missing this thing:
+This is a scad implementation of the sheet-metal frame support bracket that comes with the Prusa
+MK3(S+) kit, if you're missing it. The printed part:
 
-![Prusa MK3 Frame Support](./original-frame-support.jpeg)
+![The printable frame support: a tapered, ribbed block with two slots at the wide end and two holes in the side wall](assets/frame-support.png)
+
+Photos of a printed one, on its own and installed, are to come (#2).
 
 ## Files
 
@@ -34,3 +37,20 @@ replaces the thin L-profile with a pocketed, ribbed block.
 ## Printing
 
 Print flat-face down, as modelled; no supports are needed.
+
+## Checks
+
+`just test` takes under a second on OpenSCAD 2026.10.15. It renders the part with warnings treated
+as errors and checks that it's one solid of the size above; that each slot and side hole is open,
+with a probe a little narrower than it passed through where it should be; and that
+`frame_support.stl` is still the same part as the source renders, by size and volume. Different
+OpenSCAD versions mesh it differently, so it doesn't compare triangles.
+
+`just images` renders the picture above.
+
+## Licence
+
+MIT; see [LICENSE](LICENSE).
+
+Prusa is a trademark of Prusa Research a.s. This project isn't affiliated with Prusa Research; the
+part is made to fit their printer.
