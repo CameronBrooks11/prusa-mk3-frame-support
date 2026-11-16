@@ -1,7 +1,7 @@
 default:
     @just --list
 
-# Render the part and check its size, one solid, and that frame_support.stl still matches the source
+# Render the part and check its size, one solid, and that its slots and side holes are open
 test:
     python3 tests/test_frame_support.py
 
